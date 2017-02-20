@@ -17,7 +17,7 @@ npm install stream-pkg
 ``` javascript
 var Composer = require('stream-pkg');
 
-var src = 'Hello world.';
+var src = 'Hello world.';   //   将 src += src; 多进行几次操作，看看当长度超过1 字节后，长度是怎么表示的。
 var comp = new Composer();
 // package to data
 var res = comp.compose(src);
@@ -47,7 +47,7 @@ var server = net.createServer(function(socket) {
     socket.write(composer.compose(pkg));
   });
 
-  socket.on('data', function(data) {
+  socket.on('data', function(data) {    // 修改client发送的数据的长度，可以看到client通过tcp发送了多次。
     composer.feed(data);
   });
 
